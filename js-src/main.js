@@ -29,13 +29,24 @@ class Rating {
         }
     }
 
-    render(id) {
+    render(id, replaceExiting) {
+        let that = this;
+
+        const removeExistingRatingDom = function() {
+            let existingRatingDom = parentDom.querySelector('.' + that.ratingClass);
+            if (existingRatingDom) {
+                existingRatingDom.parentNode.removeChild(existingRatingDom);
+            }
+        };
+
         this.parentDomId = id;
         const parentDom = document.querySelector('#' + this.parentDomId);
+        if (replaceExiting) {
+            removeExistingRatingDom();
+        }
         const containerElem = document.createElement(this.containerElem);
         containerElem.classList.add(this.ratingClass);
         let totalStars = this.noOfStar;
-        let that = this;
 
         const addStars = function() {
             let star = document.createElement(that.starEle);
