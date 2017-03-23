@@ -13,7 +13,7 @@
 
 <body>
 
-  <pre>
+    <pre>
     let config = {
         noOfStar: 10, // optional
         rating: 5, // optional, initial rating
@@ -29,9 +29,15 @@
     // here Slider is used to demonstrate features of Rating component, it is not part of library
 
   </pre>
+    <h2>Demo 1</h2>
+    <div id="demo1"></div>
+    <input id="result" type="range" min="1" max="10" step="1" onchange="updateRating()" /><span id="resultNo"></span>
 
-    <div id="main"></div>
-    <input id="result" type="range" min="1" max="10" step="1" onchange="updateRating()" /><span id="resultNo" ><span>
+    <h2>Demo 2</h2>
+    How many star do you want to have? <input type="text" id="noOfStars" value="15" size="3"/>
+    what is initial rating? <input type="text" id="initRating" size="3" value="6"/>
+    <button onclick="createRatingComponent()">Create Rating component</button>
+    <div id="demo2"></div>
 
 
     <script>
@@ -41,7 +47,7 @@
             onChange: showRating // optional, onchange function
         };
         let ratingComponent = Rating.getRatingObj(config);
-        ratingComponent.render('main');
+        ratingComponent.render('demo1');
 
         function showRating() {
             document.querySelector('#result').value = ratingComponent.rating;
@@ -51,6 +57,16 @@
         function updateRating() {
             ratingComponent.setRating(document.querySelector('#result').value);
             document.querySelector('#resultNo').innerHTML = document.querySelector('#result').value;
+        }
+
+        function createRatingComponent(){
+          let replaceOld = true;
+          let config = {
+              noOfStar: document.querySelector('#noOfStars').value, // optional
+              rating: document.querySelector('#initRating').value, // optional, initial rating
+          };
+          let ratingComponent = Rating.getRatingObj(config);
+          ratingComponent.render('demo2', replaceOld);
         }
     </script>
 </body>
