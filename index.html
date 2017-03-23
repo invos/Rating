@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="./main.css" rel="stylesheet" type="text/css" />
+    <script src="./main.js"></script>
+
+    <title>Demo Rating</title>
+</head>
+
+<body>
+    <div id="main"></div>
+    <input id="result" type="range" min="1" max="10" step="1" onchange="updateRating()" /><span id="resultNo" />
+    <script>
+        let config = {
+            noOfStar: 10, // optional
+            rating: 5, // optional, initial rating
+            onChange: showRating // optional, onchange function
+        };
+        let rating = Rating.getRatingObj(config);
+        rating.render('main');
+
+        function showRating() {
+            document.querySelector('#result').value = rating.rating;
+            document.querySelector('#resultNo').innerHTML = rating.rating;
+        }
+
+        function updateRating() {
+            rating.setRating(document.querySelector('#result').value);
+            document.querySelector('#resultNo').innerHTML = document.querySelector('#result').value;
+        }
+    </script>
+</body>
+
+</html>
