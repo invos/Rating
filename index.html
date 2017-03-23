@@ -8,28 +8,48 @@
     <link href="./css/main.css" rel="stylesheet" type="text/css" />
     <script src="./lib/main.js"></script>
 
-    <title>Demo Rating</title>
+    <title>Demo : Rating</title>
 </head>
 
 <body>
+
+  <pre>
+    let config = {
+        noOfStar: 10, // optional
+        rating: 5, // optional, initial rating
+        onChange: function(){} // optional, onchange function
+        // for other configuration option check source code (lib/main.js)
+    };
+    let ratingComponent = Rating.getRatingObj(config);
+    ratingComponent.render('main');
+
+    console.log(ratingComponent.rating); // it will return the current rating
+    ratingComponent.setRating(num); // it will set the rating
+
+    // here Slider is used to demonstrate features of Rating component, it is not part of library
+
+  </pre>
+
     <div id="main"></div>
-    <input id="result" type="range" min="1" max="10" step="1" onchange="updateRating()" /><span id="resultNo" />
+    <input id="result" type="range" min="1" max="10" step="1" onchange="updateRating()" /><span id="resultNo" ><span>
+
+
     <script>
         let config = {
             noOfStar: 10, // optional
             rating: 5, // optional, initial rating
             onChange: showRating // optional, onchange function
         };
-        let rating = Rating.getRatingObj(config);
-        rating.render('main');
+        let ratingComponent = Rating.getRatingObj(config);
+        ratingComponent.render('main');
 
         function showRating() {
-            document.querySelector('#result').value = rating.rating;
-            document.querySelector('#resultNo').innerHTML = rating.rating;
+            document.querySelector('#result').value = ratingComponent.rating;
+            document.querySelector('#resultNo').innerHTML = ratingComponent.rating;
         }
 
         function updateRating() {
-            rating.setRating(document.querySelector('#result').value);
+            ratingComponent.setRating(document.querySelector('#result').value);
             document.querySelector('#resultNo').innerHTML = document.querySelector('#result').value;
         }
     </script>
