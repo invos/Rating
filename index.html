@@ -62,8 +62,8 @@
         function createRatingComponent(){
           let replaceOld = true;
           let config = {
-              noOfStar: document.querySelector('#noOfStars').value, // optional
-              rating: document.querySelector('#initRating').value, // optional, initial rating
+              noOfStar: +(document.querySelector('#noOfStars').value), // optional
+              rating: +(document.querySelector('#initRating').value), // optional, initial rating
           };
           let ratingComponent = Rating.getRatingObj(config);
           ratingComponent.render('demo2', replaceOld);
