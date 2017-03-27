@@ -7,9 +7,8 @@
     "babel-cli": "^6.24.0",
     "babel-preset-env": "^1.2.2"
   },
-  "devDependencies": {},
   "scripts": {
-    "build":"node_modules\\.bin\\babel js-src -d lib",
+    "build": "node_modules\\.bin\\babel js-src -d lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
